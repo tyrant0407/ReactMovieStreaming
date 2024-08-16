@@ -5,7 +5,7 @@ import noimage from '/noimage.jpg';
 const Cards = ({data,title}) => {
   return (
     <div className='w-full h-full px-[7%] flex flex-col  bg-[#16141d]'>
-      {title && <h1 className='text-white text-2xl font-semibold mb-2 ml-5' >{title.toUpperCase()}</h1>}
+      {title && <h1 className='text-white text-2xl font-semibold mb-2 ml-5' >{title.toUpperCase().replace("_"," ")}</h1>}
       <div className='w-full h-full flex flex-wrap justify-center'>
       {data && data.map((d,i)=>(
         <Link className='w-[30vh] mr-[2%] mb-[2%] p-[1%] border border-[#333232] shadow-[8px_17px_38px_2px_rgba(0,0,0,0.5)] rounded-lg' key={i}>

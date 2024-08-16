@@ -8,12 +8,12 @@ import Loader from "./Loader";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 const Popular = () => {
+    document.title = `Movie App || Popular}`;
     const navigate = useNavigate();
     const [category, setCategory] = useState("movie");
     const [popular, setpopular] = useState([]);
     const [page, setPage] = useState(1);
     const [hasMore, setHasMore] = useState(true);
-    document.title = `Movie App || Popular ${category.toUpperCase()}`;
 
     
   const GetPopular = async()=>{
