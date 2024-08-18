@@ -9,7 +9,7 @@ const SideNav = () => {
         </h1>
         <nav className='flex flex-col gap-3' >
         <h1 className='text-white text-lg font-bold mt-5 mb-5 ml-8' >New Feeds</h1>
-         <Link to='/' className='text-white text-s font-semibold hover:bg-[#6556CD] hover:text-white duration-300 rounded-lg p-5 pl-8' >
+         <Link to='/trending' className='text-white text-s font-semibold hover:bg-[#6556CD] hover:text-white duration-300 rounded-lg p-5 pl-8' >
          <i className='ri-fire-fill text-[red] mr-2'></i>
          Trending
          </Link>
