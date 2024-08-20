@@ -16,7 +16,7 @@ const TopNav = ({leftPadding}) => {
     }, [query]);
     
   return (
-    <div className="w-[100%] h-[10vh] relative flex items-center" style={{ paddingLeft: leftPadding }}>
+    <div className="w-[100%] h-[10vh] relative flex items-center pl-[25%]" style={{ paddingLeft: leftPadding }}>
       <i className='ri-search-line text-zinc-200 text-xl mr-5 '></i>
       <input onChange={(e)=> setquery(e.target.value)} value={query} 
       type="text" placeholder='Search Any Movie...' className='w-[50%] h-[5vh] bg-transparent border-none outline-none text-white' />
