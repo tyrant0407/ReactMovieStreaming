@@ -42,7 +42,7 @@ const Home = () => {
     <>
      <SideNav/>
      <div className='w-[80%] h-full bg-[#16141d] overflow-auto overflow-x-hidden' >
-      <TopNav/>
+      <TopNav leftPadding="25%" />
       <Header data={heroImage}/>
 
       <div className="flex justify-between items-center p-5" >

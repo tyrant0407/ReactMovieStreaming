@@ -1,10 +1,10 @@
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from "../../utils/Axios";
-import { useEffect } from 'react';
-import noimage from '/noimage.jpg'
+import noimage from '/noimage.jpg';
+import PropTypes from 'prop-types';
 
-const TopNav = () => {
+const TopNav = ({leftPadding}) => {
     const [query, setquery] = useState('');
     const [searchResult, setSearchResult] = useState([]);
     const GetSearchResult = async()=>{
@@ -16,7 +16,7 @@ const TopNav = () => {
     }, [query]);
     
   return (
-    <div className="w-[100%] h-[10vh] relative flex items-center pl-[25%]">
+    <div className="w-[100%] h-[10vh] relative flex items-center" style={{ paddingLeft: leftPadding }}>
       <i className='ri-search-line text-zinc-200 text-xl mr-5 '></i>
       <input onChange={(e)=> setquery(e.target.value)} value={query} 
       type="text" placeholder='Search Any Movie...' className='w-[50%] h-[5vh] bg-transparent border-none outline-none text-white' />
@@ -34,6 +34,10 @@ const TopNav = () => {
       </div>
     </div>
   )
+}
+
+TopNav.propTypes = {
+    leftPadding: PropTypes.string.isRequired
 }
 
 export default TopNav
