@@ -4,6 +4,7 @@ import Dropdown from "./templates/Dropdown";
 import { useState, useEffect } from "react";
 import axios from "../utils/Axios";
 import Cards from "./templates/Cards";
+import Loader from "./Loader";
 
 const Trending = () => {
   const navigate = useNavigate();
@@ -22,8 +23,8 @@ const Trending = () => {
   useEffect(() => {
     GetTrending();
   }, [category, duration])
-  return (
-    <div className="w-full h-full bg-[#16141d] pt-[0.5%] px-[1%]">
+  return trending ? (
+    <div className="w-full h-full bg-[#16141d] pt-[0.5%] px-[1%] overflow-hidden overflow-y-auto">
       <div className="flex items-center gap-4">
    
         <h1 className="text-white text-3xl font-bold">
@@ -34,13 +35,13 @@ const Trending = () => {
         Trending
         </h1>
       <TopNav leftPadding="15%" />
-     <Dropdown title="Category" options={["movie","tv","all"]} value={category} onChange={(e)=> setCategory(e.target.value)} />
+     <Dropdown title="Category" options={["movie","tv","all"]} value={category} func={(e)=> setCategory(e.target.value)} />
       <div className="w-[2%]"></div>
-      <Dropdown title="Duration" options={["week","day"]} value={duration} onChange={(e)=> setDuration(e.target.value)} />
+      <Dropdown title="Duration" options={["week","day"]} value={duration} func={(e)=> setDuration(e.target.value)} />
       </div>
-      <Cards trending={trending} />
+      <Cards data={trending} title={category} /> 
     </div>
-  )
+  ): <Loader />
 } 
 
 export default Trending
