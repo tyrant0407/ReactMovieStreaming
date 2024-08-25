@@ -5,17 +5,18 @@ import { useState, useEffect } from "react";
 import axios from "../utils/Axios";
 import Cards from "./templates/Cards";
 import Loader from "./Loader";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 const Trending = () => {
   const navigate = useNavigate();
   const [category, setCategory] = useState("all");
   const [duration, setDuration] = useState("day");
-  const [trending, setTrending] = useState(null)
+  const [trending, setTrending] = useState([])
 
   const GetTrending = async()=>{
     try {
       const {data} = await axios.get(`/trending/${category}/${duration}`);
-      setTrending(data.results);
+      setTrending((prevState)=>[...prevState,...data.results]);
     } catch (error) {
       console.log(error);
     }
@@ -23,9 +24,9 @@ const Trending = () => {
   useEffect(() => {
     GetTrending();
   }, [category, duration])
-  return trending ? (
-    <div className="w-full h-full bg-[#16141d] pt-[0.5%] px-[1%] overflow-hidden overflow-y-auto">
-      <div className="flex items-center gap-4">
+  return trending.length > 0 ? (
+    <div className="w-full h-full bg-[#16141d]">
+      <div className="flex items-center gap-4 px-[5%] ">
    
         <h1 className="text-white text-3xl font-bold">
         <i 
@@ -39,7 +40,14 @@ const Trending = () => {
       <div className="w-[2%]"></div>
       <Dropdown title="Duration" options={["week","day"]} value={duration} func={(e)=> setDuration(e.target.value)} />
       </div>
-      <Cards data={trending} title={category} /> 
+      <InfiniteScroll
+        dataLength={trending.length}
+        next={GetTrending}
+        hasMore={true}
+        loader={<Loader />}
+      >
+        <Cards data={trending} title={category} /> 
+      </InfiniteScroll>
     </div>
   ): <Loader />
 } 
