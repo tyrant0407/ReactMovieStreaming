@@ -11,19 +11,38 @@ const Trending = () => {
   const navigate = useNavigate();
   const [category, setCategory] = useState("all");
   const [duration, setDuration] = useState("day");
-  const [trending, setTrending] = useState([])
+  const [trending, setTrending] = useState([]);
+  const [page, setPage] = useState(1);
+  const [hasMore, setHasMore] = useState(true);
 
   const GetTrending = async()=>{
     try {
-      const {data} = await axios.get(`/trending/${category}/${duration}`);
-      setTrending((prevState)=>[...prevState,...data.results]);
+      const {data} = await axios.get(`/trending/${category}/${duration}?page=${page}`);
+      if(data.results.length > 0){
+        setTrending((prevState)=>[...prevState,...data.results]);
+        setPage(page+1);
+      }else{
+        setHasMore(false);
+      }
     } catch (error) {
       console.log(error);
     }
   }
+
+  const refershHandler = ()=>{
+    if(trending.length === 0){
+      GetTrending();
+    }else{
+      setPage(1);
+      setTrending([]);
+      GetTrending();
+    }
+  }
+
   useEffect(() => {
-    GetTrending();
+  refershHandler();
   }, [category, duration])
+
   return trending.length > 0 ? (
     <div className="w-full h-full bg-[#16141d]">
       <div className="flex items-center gap-4 px-[5%] ">
