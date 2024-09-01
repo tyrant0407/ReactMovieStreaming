@@ -51,7 +51,7 @@ const Movie = () => {
         <h1 className="text-white text-3xl font-bold">
         <i 
           onClick={() => navigate(-1)} 
-          className="text-3xl text-white hover:text-[#6556CD] hover:font-bold duration-300 ri-arrow-left-s-line cursor-pointer"
+          className="text-3xl text-white hover:text-[#6556CD] hover:font-bold duration-250 ri-arrow-left-s-line cursor-pointer"
         />{""}
         Movies 
         </h1>
