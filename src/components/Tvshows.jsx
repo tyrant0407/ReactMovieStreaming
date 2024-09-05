@@ -57,7 +57,7 @@ const Tvshows = () => {
        
         </div>
       <TopNav leftPadding="15%" />
-     <Dropdown title="Category" options={["airing_today","on_the_air","top_rated"]} value={category} func={(e)=> setCategory(e.target.value)} />
+     <Dropdown title="Category" options={["airing_today","on_the_air","top_rated","popular"]} value={category} func={(e)=> setCategory(e.target.value)} />
       <div className="w-[2%]"></div>
       </div>
       <InfiniteScroll

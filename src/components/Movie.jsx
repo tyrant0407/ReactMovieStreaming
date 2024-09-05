@@ -56,7 +56,7 @@ const Movie = () => {
         Movies 
         </h1>
       <TopNav leftPadding="15%" />
-     <Dropdown title="Category" options={["now_playing","upcoming","top_rated"]} value={category} func={(e)=> setCategory(e.target.value)} />
+     <Dropdown title="Category" options={["now_playing","upcoming","top_rated","popular"]} value={category} func={(e)=> setCategory(e.target.value)} />
       <div className="w-[2%]"></div>
       </div>
       <InfiniteScroll
