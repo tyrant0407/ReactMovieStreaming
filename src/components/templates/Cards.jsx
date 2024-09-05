@@ -8,11 +8,11 @@ const Cards = ({data,title,showDetails}) => {
       {title && <h1 className='text-white text-2xl font-semibold mb-2 ml-5' >{title.toUpperCase().replace("_"," ").replace("_"," ")}</h1>}
       <div className='w-full h-full flex flex-wrap justify-center'>
       {data && data.map((d,i)=>(
-        <Link className='w-[30vh] mr-[2%] mb-[2%] p-[1%] border border-[#333232] shadow-[8px_17px_38px_2px_rgba(0,0,0,0.5)] rounded-lg' key={i}>
+        <Link className='relative w-[30vh] mr-[2%] mb-[2%] p-[1%] border border-[#333232] shadow-[8px_17px_38px_2px_rgba(0,0,0,0.5)] rounded-lg' key={i}>
           <img className=' h-[40vh] object-cover rounded-lg' src={d.poster_path || d.backdrop_path || d.profile_path ? `https://image.tmdb.org/t/p/original/${d.poster_path || d.backdrop_path || d.profile_path}` : noimage} alt={d.title || d.name || d.original_title || d.original_name} />
           <h1 className='text-2xl font-semibold text-white mt-2' >{d.title || d.name || d.original_title || d.original_name}</h1>
           {showDetails && d.vote_average &&  <div className='flex items-center gap-2'> 
-          <span className='text-xl font-semibold text-white h-[4vh] w-[3vh] rounded-full bg-[#EAB308] flex items-center justify-center' >{d.vote_average || "0"}%</span>{}
+          <span className='absolute top-5 left-5 text-[2.2vh] font-bold text-white h-[5vh] w-[5vh] rounded-full bg-[#eab208dc] flex items-center justify-center' >{Math.round(d.vote_average*10)}%</span>
           </div>}
           {showDetails && d.overview && <p className="text-[#9ca3af] text-sm mt-2">
             {d.overview?.slice(0, 50)}...
