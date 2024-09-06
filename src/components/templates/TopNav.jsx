@@ -23,7 +23,7 @@ const TopNav = ({leftPadding}) => {
 
       {query.length >0 && <i onClick={()=> setquery('')} className='absolute ri-close-line text-zinc-200 text-xl mr-2 right-[19%]'></i>}
 
-      <div className='w-[50%] max-h-[50vh] bg-zinc-200 rounded absolute top-[100%] left-[28%] overflow-auto' >
+      <div className='w-[50%] max-h-[50vh] bg-zinc-200 rounded absolute top-[100%] left-[28%] z-[100] overflow-auto' >
        {searchResult && searchResult.map((s,i)=>(
         <Link key={i} className='inline-flex items-center justify-start p-10 w-[100%] border-b-2 border-zinc-100 text-zinc-600 hover:bg-zinc-300 hover:text-black duration-200'>
        <img className='w-[20%] rounded-md mr-5 object-cover shadow-lg' src={s.backdrop_path || s.poster_path || s.profile_path ? `https://image.tmdb.org/t/p/w500${s.backdrop_path || s.poster_path || s.profile_path}`: noimage } alt="" />
