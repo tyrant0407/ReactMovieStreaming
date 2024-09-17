@@ -1,6 +1,6 @@
 import { useState,useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import axios from "../../utils/Axios";
+import axios from "../../utils/AxiosApi";
 import noimage from '/noimage.jpg';
 import PropTypes from 'prop-types';
 

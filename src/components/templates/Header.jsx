@@ -12,7 +12,7 @@ const Header = ({data}) => {
        backgroundRepeat: "no-repeat"
     }} className='w-full h-[60vh] flex flex-col justify-end p-[5%]'>
         <h1 className='text-white text-5xl font-bold w-[70%]' >{data.title || data.name || data.original_title || data.original_name}</h1>
-        <p className='text-[#9ca3af] text-xl w-[70%] mt-3' >{data.overview.slice(0,200)} .... <Link className='text-blue-500'>More</Link> </p>
+        <p className='text-[#9ca3af] text-xl w-[70%] mt-3' >{data.overview.slice(0,200)} .... <Link to={`/${data.media_type}/details/${data.id}`} className='text-blue-500'>More</Link> </p>
         <div className='text-white text-xl mt-3 flex items-center gap-2 capitalize'> 
             <i className="text-yellow-500 ri-megaphone-fill"></i> 
             <span className='text-xl font-semibold'>{data.release_date || data.first_air_date || "No Information"}</span>
@@ -39,7 +39,8 @@ Header.propTypes = {
         release_date: PropTypes.string,
         first_air_date: PropTypes.string,
         vote_average: PropTypes.number,
-        media_type: PropTypes.string
+        media_type: PropTypes.string,
+        id: PropTypes.number
     }).isRequired
 };
 

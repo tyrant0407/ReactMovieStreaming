@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import axios from '../utils/Axios';
+import axios from '../utils/AxiosApi';
 import { useNavigate } from 'react-router-dom';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import Loader from './Loader';
