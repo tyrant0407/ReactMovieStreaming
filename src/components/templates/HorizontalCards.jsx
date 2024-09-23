@@ -7,7 +7,7 @@ const HorizontalCards = ({data}) => {
   return (        
      <div className='w-full flex overflow-x-auto h-[50vh] overflow-y-hidden mb-4' >
         {data && data.map((d,i)=>(
-            <Link to={`/${d.media_type }/details/${d.id}`} key={i} className="min-w-[15%] ml-[1.2vw] bg-[#00000031] rounded-lg overflow-hidden mb-[0.5vw] " >
+            <Link to={`/${d.media_type }/details/${d.id}`} key={i} className="min-w-[15%] ml-[1.2vw] bg-[#00000071] rounded-lg overflow-hidden mb-[0.5vw] " >
                 <img className='w-full h-[65%]' src={d.poster_path || d.backdrop_path || d.profile_path ? `https://image.tmdb.org/t/p/original/${d.poster_path || d.backdrop_path || d.profile_path}` : noimage} alt={d.title || d.name || d.original_title || d.original_name} />
           <div className='p-2 text-white h-[35%]' >
           <h1 className='text-xl font-bold' >{d.title || d.name || d.original_title || d.original_name}</h1>
