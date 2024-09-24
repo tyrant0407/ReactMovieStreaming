@@ -19,7 +19,6 @@ export const asyncLoadMovie =  (id) => async (dispatch,getState)=>{
         watch_providers:watch_providers.data.results
     }
     dispatch(loadMovie(ultimatedetails));
-    console.log(ultimatedetails);
    } catch (error) {
     console.log(error);
    }

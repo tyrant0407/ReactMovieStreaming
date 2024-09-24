@@ -2,39 +2,50 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ReactPlayer from 'react-player';
 import { Link } from 'react-router-dom';
-import { RiCloseLine } from 'react-icons/ri'; // Import the close icon
+import Loader from '../Loader'; 
+import { useEffect ,useState} from 'react';
+import { useDispatch } from 'react-redux';
+import { asyncLoadMovie } from '../../store/actions/movieActions';
+import { removeMovie } from '../../store/reducers/movieSlice';
+import { useParams } from 'react-router-dom';
 
 const Trailer = () => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const category = pathname.includes("movie") ? "movie" : "tv";
-  const ytvideo = useSelector((state) => state[category].info);
+  const { id } = useParams();
+  const dispatch = useDispatch();
+  const ytvideo = useSelector((state) => state[category]?.info?.videos);
+  const [isLoading, setIsLoading] = useState(true); // Add loading state
 
-  // Error handling: Check if ytvideo and ytvideo.key are defined
-  if (!ytvideo || !ytvideo.key) {
-    return (
-      <div className="bg-[rgba(0,0,0,.9)] absolute z-[100] top-0 left-0 w-screen h-screen flex items-center justify-center">
-        <p>No trailer available.</p> {/* Display a message if no trailer is found */}
-      </div>
-    );
-  }
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          await dispatch(asyncLoadMovie(id)); // await the promise
+        } catch (error) {
+          console.error('Error fetching movie data:', error);
+        }
+      };
+      fetchData();
+  
+      return () => dispatch(removeMovie());
+    }, [dispatch, id]);
 
-  return (
-    <div className="bg-[rgba(0,0,0,.9)] absolute z-[100] top-0 left-0 w-screen h-screen flex items-center justify-center">
+  return ytvideo ? (
+    <div className="bg-[rgba(0,0,0,.9)] h-screen w-screen p-3 pl-[10%]">
       <Link
         onClick={() => navigate(-1)}
-        to={pathname.substring(0, pathname.lastIndexOf('/'))}  {/* Navigate to the previous page */}
-        className="absolute hover:text-[#6556CD] text-3xl text-white right-[5%] top-[5%]"
+        className="absolute hover:text-[#6556CD] ri-close-fill text-3xl text-white right-[2%] top-[2%]"
       >
-        <RiCloseLine /> {/* Use the close icon */}
       </Link>
-      <ReactPlayer
-        height={800}
-        width={1500}
-        url={`https://www.youtube.com/watch?v=${ytvideo.key}`}
+      <ReactPlayer 
+        className="rounded-lg " 
+        height="100%"
+        width="90%"
+        url={`https://www.youtube.com/watch?v=${ytvideo?.key}`}
       />
     </div>
-  );
+  ): <Loader/>
 };
 
 export default Trailer;

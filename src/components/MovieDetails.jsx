@@ -1,12 +1,13 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { asyncLoadMovie } from "../store/actions/movieActions";
-import { useParams, useNavigate, Link, useLocation } from "react-router-dom";
+import { useParams, useNavigate, Link, useLocation , Outlet} from "react-router-dom";
 import { removeMovie } from '../store/reducers/movieSlice';
 import Loader from "./Loader";
 import { Star, Clock, Calendar,ArrowLeft, ExternalLink, Globe, DollarSign, Play} from 'lucide-react';
-import noimage from "../../public/noimage.jpg";
+import noimage from "/noimage.jpg";
 import HorizontalCards from "./templates/HorizontalCards";
+
 const MovieDetails = () => {
   const {pathname} = useLocation();
   const { id } = useParams();
@@ -16,9 +17,7 @@ const MovieDetails = () => {
 
   useEffect(() => {
     dispatch(asyncLoadMovie(id));
-    return () => {
-      dispatch(removeMovie());
-    }
+    return () => dispatch(removeMovie());
   }, [dispatch, id]);
 
   return info ? (
@@ -35,7 +34,7 @@ const MovieDetails = () => {
       <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent" />
       <div className="absolute inset-0" style={{
        background: `linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.5), rgba(0,0,0,0.8)),
-       url(https://image.tmdb.org/t/p/original/${info.details.backdrop_path || info.details.poster_path})`,
+       url(https://image.tmdb.org/t/p/original/${info.details.backdrop_path || info.details.poster_path ? info.details.backdrop_path || info.details.poster_path : noimage})`,
        backgroundPosition: "center",
        backgroundSize: "cover",
        backgroundRepeat: "no-repeat"
@@ -169,6 +168,7 @@ const MovieDetails = () => {
       <h2 className="text-2xl font-semibold mb-6">Recommendations</h2>
       <HorizontalCards data={info.recommendations.length > 0 ? info.recommendations : info.similar} />
     </div>
+    <Outlet />
   </div>
   ) : <Loader />
 }

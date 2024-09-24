@@ -21,7 +21,7 @@ const Header = ({data}) => {
             <i className="ml-5 text-yellow-500 ri-album-fill"></i> 
             <span className='text-xl font-semibold uppercase'>{data.media_type || "Nothing"}</span>
         </div>
-            <Link className="text-[#6556CD] bg-white px-4 py-3 rounded-md w-fit mt-3 hover:bg-[#6556CD] hover:text-white duration-200 font-bold uppercase">Watch Trailer</Link>
+        <Link to={`/movie/details/${data.id}/trailer`} className="text-[#6556CD] bg-white px-4 py-3 rounded-md w-fit mt-3 hover:bg-[#6556CD] hover:text-white duration-200 font-bold uppercase">Watch Trailer</Link>
         </div>
   ) 
 }
