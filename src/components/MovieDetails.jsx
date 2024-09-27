@@ -88,11 +88,9 @@ const MovieDetails = () => {
           <div className="bg-[#070707] p-6 rounded-lg">
             <h3 className="text-xl font-semibold mb-4">Movie Details</h3>
             <ul className="space-y-2">
-              <li><strong>Status:</strong> <span className="text-gray-400">Released</span></li>
-              <li><strong>Release Date:</strong> <span className="text-gray-400">Oct 22, 2024</span></li>
-              <li><strong>Runtime:</strong> <span className="text-gray-400">120 minutes</span></li>
-              <li><strong>Budget:</strong> <span className="text-gray-400">$120,000,000</span></li>
-              <li><strong>Revenue:</strong> <span className="text-gray-400">$468,513,700</span></li>
+              <li><strong>Status:</strong> <span className="text-gray-400">{info.details.status}</span></li>
+              <li><strong>Release Date:</strong> <span className="text-gray-400">{info.details.release_date}</span></li>
+              <li><strong>Runtime:</strong> <span className="text-gray-400">{info.details.runtime} minutes</span></li>
             </ul>
           </div>
         </div>

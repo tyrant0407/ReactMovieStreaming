@@ -6,6 +6,7 @@ import axios from "../utils/AxiosApi";
 import Cards from "./templates/Cards";
 import Loader from "./Loader";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { ArrowLeft } from 'lucide-react';
 
 const Movie = () => {
     document.title = `Movie App || Movies`;
@@ -48,13 +49,14 @@ const Movie = () => {
     <div className="w-full h-full bg-[#16141d]">
       <div className="flex items-center gap-4 px-[5%] ">
    
-        <h1 className="text-white text-3xl font-bold">
-        <i 
-          onClick={() => navigate(-1)} 
-          className="text-3xl text-white hover:text-[#6556CD] hover:font-bold duration-250 ri-arrow-left-s-line cursor-pointer"
-        />{""}
-        Movies 
-        </h1>
+      <button 
+      onClick={() => navigate(-1)} 
+      className="absolute top-4 left-10 z-10 flex items-center gap-2 text-3xl"
+      aria-label="Go back"
+    >
+      <ArrowLeft className="w-10 h-10 bg-[#1F1E24] text-gray-100 p-2 rounded-full hover:bg-gray-700 transition-colors" />
+      <span className="text-white text-xl font-bold">Movies</span>
+    </button>
       <TopNav leftPadding="15%" />
      <Dropdown title="Category" options={["now_playing","upcoming","top_rated","popular"]} value={category} func={(e)=> setCategory(e.target.value)} />
       <div className="w-[2%]"></div>

@@ -6,7 +6,7 @@ import Loader from './Loader';
 import Cards from './templates/Cards';
 import TopNav from './templates/TopNav';
 import Dropdown from './templates/Dropdown';
-
+import { ArrowLeft } from 'lucide-react';
 const Tvshows = () => {
     document.title = `Movie App || Tv Shows}`;
     const navigate = useNavigate();
@@ -49,11 +49,14 @@ const Tvshows = () => {
       <div className="flex items-center gap-4 px-[5%] ">
    
         <div className="text-white text-3xl font-bold flex items-center gap-2 w-[20%]">
-        <i 
-          onClick={() => navigate(-1)} 
-          className="text-3xl text-white hover:text-[#6556CD] hover:font-bold duration-300 ri-arrow-left-s-line cursor-pointer"
-        />
-        <h1>Tv Shows</h1>
+        <button 
+      onClick={() => navigate(-1)} 
+      className="absolute top-4 left-10 z-10 flex items-center gap-2 text-3xl"
+      aria-label="Go back"
+    >
+      <ArrowLeft className="w-10 h-10 bg-[#1F1E24] text-gray-100 p-2 rounded-full hover:bg-gray-700 transition-colors" />
+      <span className="text-white text-xl font-bold">Tv Shows</span>
+    </button>
        
         </div>
       <TopNav leftPadding="15%" />
