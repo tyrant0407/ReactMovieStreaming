@@ -21,7 +21,7 @@ const MovieDetails = () => {
   }, [dispatch, id]);
 
   return info ? (
-    <div className="bg-gray-900 text-gray-100 min-h-screen">
+    <div className="bg-gray-900 text-gray-100 min-h-screen overflow-x-hidden">
     <button 
       onClick={() => navigate(-1)} 
       className="absolute top-4 left-4 z-10 bg-[#1F1E24] text-gray-100 p-2 rounded-full hover:bg-gray-700 transition-colors"
