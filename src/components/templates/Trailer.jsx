@@ -4,7 +4,7 @@ import ReactPlayer from 'react-player';
 import { Link } from 'react-router-dom';
 import Notfound from '../Notfound'; 
 import Loader from '../Loader';
-import { useEffect ,useState} from 'react';
+import { useEffect, useState } from 'react';
 
 const Trailer = () => {
   const navigate = useNavigate();
@@ -36,20 +36,29 @@ const Trailer = () => {
   return loading ? (
     <Loader />
   ) : ytvideo ? (
-    <div className="bg-[rgb(0,0,0)] absolute z-[100] top-0 left-0 w-screen h-screen flex items-center justify-center overflow-hidden">
+    <div className="bg-[rgb(0,0,0)] absolute z-[100] top-0 left-0 w-screen h-screen flex items-center justify-center overflow-hidden p-4">
+      {/* Close Button */}
       <Link
         onClick={() => navigate(-1)}
-        className="absolute hover:text-[#6556CD] ri-close-fill text-3xl text-white right-[2%] top-[2%]"
+        className="absolute hover:text-[#6556CD] ri-close-fill text-3xl text-white right-4 top-4"
       >
       </Link>
+      
+      {/* Video Player */}
       <ReactPlayer 
-        borderRadius="10px"
+        className="rounded-md"
         height="100%"
-        width="90%"
+        width="100%"
         url={`https://www.youtube.com/watch?v=${ytvideo?.key}`}
+        config={{
+          youtube: {
+            playerVars: { autoplay: 1, rel: 0 }
+          }
+        }}
+        style={{ maxHeight: "90vh", maxWidth: "100%" }}
       />
     </div>
-  ) : <Notfound />
+  ) : <Notfound />;
 };
 
 export default Trailer;
