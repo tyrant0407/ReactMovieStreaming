@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import Header from "./templates/Header";
 import HorizontalCards from "./templates/HorizontalCards";
 import Dropdown from "./templates/Dropdown";
+import Loader from "./Loader";
 
 
 
@@ -52,7 +53,7 @@ const Home = () => {
       <HorizontalCards data={trending}  />
      </div>
     </>
-  ):<h1>Loading...</h1> 
+  ):<Loader/> 
 }
 
 export default Home;
