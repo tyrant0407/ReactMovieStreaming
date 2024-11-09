@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from "../../utils/Axios";
 import { useEffect } from 'react';
+import noimage from '/noimage.jpg'
 
 const TopNav = () => {
     const [query, setquery] = useState('');
@@ -26,7 +27,7 @@ const TopNav = () => {
       <div className='w-[50%] max-h-[50vh] bg-zinc-200 rounded absolute top-[90%] overflow-auto' >
        {searchResult && searchResult.map((s,i)=>(
         <Link key={i} className='inline-flex items-center justify-start p-10 w-[100%] border-b-2 border-zinc-100 text-zinc-600 hover:bg-zinc-300 hover:text-black duration-200'>
-       <img className='w-[20%] rounded-md mr-5 object-cover' src={`https://image.tmdb.org/t/p/w500${s.backdrop_path || s.poster_path || s.profile_path}`} alt="" />
+       <img className='w-[20%] rounded-md mr-5 object-cover shadow-lg' src={s.backdrop_path || s.poster_path || s.profile_path ? `https://image.tmdb.org/t/p/w500${s.backdrop_path || s.poster_path || s.profile_path}`: noimage } alt="" />
        <span className='text-s font-semibold' >{s.title || s.name || s.original_title || s.original_name}</span>
        </Link>))}
 
