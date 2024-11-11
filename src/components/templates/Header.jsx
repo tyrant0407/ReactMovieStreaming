@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
+import PropTypes from 'prop-types';
 
 const Header = ({data}) => {
-    console.log(data)
+
   return (
     <div style={{
        background: `linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.5), rgba(0,0,0,0.8)),
@@ -12,12 +13,30 @@ const Header = ({data}) => {
         <h1 className='text-white text-5xl font-bold w-[70%]' >{data.title || data.name || data.original_title || data.original_name}</h1>
         <p className='text-[#9ca3af] text-xl w-[70%] mt-3' >{data.overview.slice(0,200)} .... <Link className='text-blue-500'>More</Link> </p>
         <p className='text-white text-xl mt-3 flex items-center gap-2 capitalize' > 
-            <i className="text-yellow-500 ri-megaphone-fill"></i> <h1 className='text-xl font-semibold text-[#f6f9ff]' >{data.release_date || data.first_air_date} </h1>
-            <i className="text-yellow-500 ri-star-fill"></i> <h1 className='text-xl font-semibold text-[#f6f9ff]' >{data.vote_average} </h1>   
-            <i className="text-yellow-500 ri-album-fill "></i> <h1 className='text-xl font-semibold text-[#f6f9ff]' >{data.media_type} </h1>
+            <i className="text-yellow-500 ri-megaphone-fill"></i> <h1 className='text-xl font-semibold' >{data.release_date || data.first_air_date} </h1>
+            <i className="ml-5 text-yellow-500 ri-star-fill"></i> <h1 className='text-xl font-semibold' >{data.vote_average} </h1>   
+            <i className="ml-5 text-yellow-500 ri-album-fill "></i> <h1 className='text-xl font-semibold uppercase' >{data.media_type} </h1>
         </p>
+            <Link className="text-[#6556CD] bg-white px-4 py-3 rounded-md w-fit mt-3 font-bold uppercase">Watch Trailer</Link>
         </div>
   ) 
 }
+
+Header.propTypes = {
+    data: PropTypes.shape({
+        backdrop_path: PropTypes.string,
+        poster_path: PropTypes.string,
+        profile_path: PropTypes.string,
+        title: PropTypes.string,
+        name: PropTypes.string,
+        original_title: PropTypes.string,
+        original_name: PropTypes.string,
+        overview: PropTypes.string,
+        release_date: PropTypes.string,
+        first_air_date: PropTypes.string,
+        vote_average: PropTypes.number,
+        media_type: PropTypes.string
+    }).isRequired
+};
 
 export default Header;

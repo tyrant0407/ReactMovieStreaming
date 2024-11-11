@@ -15,7 +15,6 @@ const Home = () => {
       const {data} = await axios.get(`/trending/all/day`);
       let RadomData = data.results[(Math.random()*data.results.length).toFixed()];
       setheroImage(RadomData);
-      console.log(RadomData);
   }
   useEffect(() => {
     !heroImage && GetHeaderHeroImage();
